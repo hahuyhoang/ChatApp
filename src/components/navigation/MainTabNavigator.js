@@ -2,7 +2,7 @@ import NotImplementedScreen from '../../screen/NotImplementedScreen'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import ChatsScreen from '../../screen/ChatsScreen'
 const Tab = createBottomTabNavigator();
-import { Ionicons } from '@expo/vector-icons'
+import { Ionicons, Entypo } from '@expo/vector-icons'
 
 const MainTabNavigator = () => {
     return (
@@ -37,11 +37,20 @@ const MainTabNavigator = () => {
             <Tab.Screen
                 name="Chats"
                 component={ChatsScreen}
-                options={{
+                options={({navigation})=> ({
                     tabBarIcon: ({ color, size }) => (
                         <Ionicons name="ios-chatbubbles-sharp" size={size} color={color} />
                     ),
-                }}
+                    headerRight: () => (
+                        <Entypo
+                        onPress={() => navigation.navigate('ContactsScreen')}
+                          name="new-message"
+                          size={18}
+                          color={"royalblue"}
+                          style={{ marginRight: 15 }}
+                        />
+                      ),
+                })}
             />
             <Tab.Screen
                 name="Settings"
